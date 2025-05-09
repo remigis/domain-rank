@@ -35,7 +35,16 @@ function getPageRanks(array $domains): array
     }
 
     $api_key = defined('OPEN_PAGE_RANK_API_KEY') ? OPEN_PAGE_RANK_API_KEY : '';
-    $url     = 'https://openpagerank.com/api/v1.0/getPageRank?'.http_build_query([
+
+    if(empty($api_key)){
+        if(is_admin()){
+            add_action('admin_notices', 'showMissingApiKeyNotice');
+        }
+
+        return $results;
+    }
+
+    $url = 'https://openpagerank.com/api/v1.0/getPageRank?'.http_build_query([
         'domains' => $domains,
       ]);
 

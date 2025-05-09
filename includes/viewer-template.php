@@ -83,3 +83,11 @@ function renderPagination($total_pages, $paged, $search, $per_page): void
     echo '</div>';
 }
 
+function showMissingApiKeyNotice(): void
+{
+    echo '<div class="notice notice-error"><p>';
+    echo '⚠️ OpenPageRank API key is missing. Please define it in your <code>wp-config.php</code>:<br><br>';
+    echo '<code>define("OPEN_PAGE_RANK_API_KEY", "your-api-key-here");</code>';
+    echo '</p></div>';
+}
+
